@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: white;
+}
+
+/* Handle on active state */
+::-webkit-scrollbar-thumb:active {
+    background-color: gray;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #0b0117;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: white;
+}
