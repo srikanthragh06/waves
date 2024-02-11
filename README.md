@@ -57,6 +57,7 @@ You will have to create the neccesary env file in the backend folder
     cd ../backend
     npm start
 
+
     # Socket
     cd ../socket
     npm start
@@ -65,3 +66,11 @@ You will have to create the neccesary env file in the backend folder
 5. Access Waves in your web browser at `http://localhost:3000`.
 
 That's it! You now have Waves up and running on your local machine.
+
+## Screenshots
+![waves1](https://github.com/srikanthragh06/waves/assets/58130397/edd4b3f5-2576-4504-997a-6227791f2d76)
+![waves2](https://github.com/srikanthragh06/waves/assets/58130397/d2f8f25d-5f5e-4ced-b0c3-7741d1ce1d2e)
+![waves3](https://github.com/srikanthragh06/waves/assets/58130397/9c1ab551-37d0-49e7-bab9-8776cec7cf05)
+![waves4](https://github.com/srikanthragh06/waves/assets/58130397/60a34750-9eb9-4586-aeed-c263faf57d0b)
+![waves5](https://github.com/srikanthragh06/waves/assets/58130397/a02ebeb6-aafb-4b6d-9fb8-1254637b3149)
+
