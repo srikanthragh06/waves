@@ -1,42 +1,36 @@
-import React, { useState } from "react";
-
-const SwitchToggle = () => {
-    const [isChecked, setIsChecked] = useState(false);
-
-    const toggleSwitch = () => {
-        setIsChecked((prev) => !prev);
-    };
-
+export default function SwitchToggle({
+    className,
+    toggleState,
+    setToggleState,
+    toggleTrueText,
+    toggleFalseText,
+}) {
     return (
-        <label className="flex items-center cursor-pointer">
-            <div
-                className={`relative ${
-                    isChecked ? "bg-blue-500" : "bg-gray-400"
-                } rounded-full w-16 h-8 transition`}
-                onClick={toggleSwitch}
+        <div
+            className={
+                "bg-transparent  justify-center flex text-lg sm:text-2xl" +
+                " " +
+                className
+            }
+        >
+            <button
+                className="text-white bg-transparent px-3 w-full transition py-2"
+                style={toggleState ? { borderBottom: "solid white 2px" } : {}}
+                onClick={(e) => {
+                    setToggleState(true);
+                }}
             >
-                <div
-                    className={`absolute left-0 top-0 w-8 h-8 bg-white rounded-full shadow-md transition transform cursor-pointer flex items-center justify-center ${
-                        isChecked ? "translate-x-8" : "translate-x-0"
-                    }`}
-                >
-                    <span
-                        className={`text-white ${
-                            isChecked ? "text-blue-500" : "text-gray-400"
-                        } font-bold transition`}
-                    >
-                        {isChecked ? "Sign Up" : "Login"}
-                    </span>
-                </div>
-                <input
-                    type="checkbox"
-                    className="hidden"
-                    checked={isChecked}
-                    onChange={toggleSwitch}
-                />
-            </div>
-        </label>
+                {toggleTrueText}
+            </button>
+            <button
+                className="text-white bg-transparent  px-3 w-full transition py-2"
+                style={!toggleState ? { borderBottom: "solid white 2px" } : {}}
+                onClick={(e) => {
+                    setToggleState(false);
+                }}
+            >
+                {toggleFalseText}
+            </button>
+        </div>
     );
-};
-
-export default SwitchToggle;
+}

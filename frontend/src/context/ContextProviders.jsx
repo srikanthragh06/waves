@@ -1,11 +1,14 @@
 import React from "react";
+import GeneralMessageProvider from "./GeneralMessageProvider";
 import AuthProvider from "./AuthProvider";
-import ProfilePictureProvider from "./ProfilePictureProvider";
+import ChatProvider from "./ChatProvider";
 
 export default function ContextProviders({ children }) {
     return (
-        <AuthProvider>
-            <ProfilePictureProvider>{children}</ProfilePictureProvider>
-        </AuthProvider>
+        <GeneralMessageProvider>
+            <AuthProvider>
+                <ChatProvider>{children}</ChatProvider>
+            </AuthProvider>
+        </GeneralMessageProvider>
     );
 }

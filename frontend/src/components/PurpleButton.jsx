@@ -1,14 +1,21 @@
-import React from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-export default function PurpleButton({ className, children, onClick, busy }) {
+export default function PurpleButton({
+    children,
+    className,
+    loadingState,
+    style,
+    onClick = () => {},
+}) {
     return (
         <button
-            className={`bg-color2 sm:text-base text-sm px-2 py-1 rounded-md flex justify-center
-                    text-white hover:opacity-80 transition cursor-pointer ${className}`}
             onClick={onClick}
+            style={style}
+            className={`text-2xl px-2 py-1 bg-color2 rounded-sm 
+            flex justify-center
+            hover:opacity-65 border- ${className}`}
         >
-            {busy ? (
+            {loadingState ? (
                 <AiOutlineLoading3Quarters className="animate-spin" />
             ) : (
                 children

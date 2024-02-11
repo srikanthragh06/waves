@@ -1,4 +1,3 @@
-const Joi = require("joi");
 const { body, validationResult } = require("express-validator");
 const { sendClientSideError } = require("../utils/response-templates");
 
@@ -69,12 +68,28 @@ exports.updateUserValidation = [
         .withMessage("Incorrect dateOfBirth format (yyyy-mm-dd)"),
     body("user.bio")
         .optional()
-        .isLength({ min: 0, max: 200 })
-        .withMessage("Bio must be between 0 and 200 characters"),
+        .isLength({ min: 0, max: 500 })
+        .withMessage("Bio must be between 0 and 500 characters"),
     body("user.gender")
         .optional()
         .isIn(["Male", "Female", "Others"])
         .withMessage("Gender can be only Male,Female or Others"),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return sendClientSideError(req, res, errors.array()[0].msg);
+        }
+        next();
+    },
+];
+
+exports.changePasswordValidation = [
+    body("oldPassword")
+        .isLength({ min: 6, max: 32 })
+        .withMessage("Incorrect old password format"),
+    body("newPassword")
+        .isLength({ min: 6, max: 32 })
+        .withMessage("Incorrect new password format"),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

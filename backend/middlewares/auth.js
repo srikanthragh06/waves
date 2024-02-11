@@ -11,9 +11,26 @@ exports.isAuth = async (req, res, next) => {
 
         if (!jwtToken)
             return sendClientSideError(req, res, "Auth-token missing");
-        const { userId } = jwt.verify(jwtToken, process.env.JWT_SECRET);
 
-        const user = await User.findById(userId);
+        let decodedToken;
+        try {
+            decodedToken = jwt.verify(jwtToken, process.env.JWT_SECRET);
+        } catch (error) {
+            if (error instanceof jwt.TokenExpiredError) {
+                // Handle TokenExpiredError
+                return sendClientSideError(
+                    req,
+                    res,
+                    "token expired, please login again"
+                );
+            } else {
+                throw error; // Throw other errors for general error handling
+            }
+        }
+
+        const { userId } = decodedToken;
+
+        const user = await User.findByPk(userId);
         if (!user)
             return sendClientSideError(
                 req,

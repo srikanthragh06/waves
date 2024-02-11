@@ -16,11 +16,12 @@ export default function PurpleFileUploader({
             name={name}
             handleChange={handleChange}
             types={types}
+            component={null}
             onTypeError={onTypeError}
             className="flex justify-center"
         >
             <p
-                className={`bg-color2 sm:text-base text-sm px-2 py-1 rounded-md flex justify-center
+                className={`bg-color2 sm:text-base text-sm px-2 py-1 rounded-sm flex justify-center
                         text-white hover:opacity-80 transition cursor-pointer ${className}`}
             >
                 {busy ? (

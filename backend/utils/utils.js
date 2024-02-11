@@ -35,3 +35,13 @@ exports.deleteFile = async (filePath) => {
         return false;
     }
 };
+
+exports.renameFile = async (oldFilePath, newFilePath) => {
+    try {
+        await fs.rename(oldFilePath, newFilePath);
+        return true;
+    } catch (error) {
+        console.error("Error renaming file:", error);
+        return false;
+    }
+};

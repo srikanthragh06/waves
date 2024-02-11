@@ -2,6 +2,7 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 // internal imports
 const {
@@ -10,17 +11,24 @@ const {
     IncorrectJSONFormatHandler,
 } = require("./middlewares/handlers");
 const { logRequest } = require("./middlewares/logger");
-const { connectMongoDB } = require("./db");
+const { connectPostGres } = require("./db/sequelize");
 const userRouter = require("./routes/user");
+const followingRouter = require("./routes/following");
+const conversationRouter = require("./routes/conversation");
+const messageRouter = require("./routes/message");
+const postRouter = require("./routes/post");
+const commentRouter = require("./routes/comment");
+const { consoleLogCyan } = require("./utils/colorLogging");
 
 // express object created
 const app = express();
 
 // connection to DB
-connectMongoDB(process.env.MONGODB_URL);
+connectPostGres();
 
 // json parser for request body
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
@@ -32,6 +40,11 @@ app.use(logRequest);
 
 // Main routes
 app.use("/user", userRouter);
+app.use("/following", followingRouter);
+app.use("/conversation", conversationRouter);
+app.use("/message", messageRouter);
+app.use("/post", postRouter);
+app.use("/comment", commentRouter);
 
 // handle 404 error requests
 app.use("/*", urlNotFoundHandler);
@@ -42,5 +55,5 @@ app.use(globalErrorHandler);
 // listen on port
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
-    console.log(`Server has started on PORT: ${PORT} :)`);
+    consoleLogCyan(`Server has started on PORT: ${PORT} :)`);
 });

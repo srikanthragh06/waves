@@ -1,69 +1,44 @@
 import client from "./client";
 
-export const signUpUser = async (userInfo) => {
+export const loginUserApi = async (userInfo) => {
     try {
-        const { data } = await client.post("/user/signup", userInfo);
-        return data;
+        const res = await client.post("/user/login", userInfo);
+        return res;
     } catch (err) {
         const { response } = err;
-        if (response?.data) return response.data;
-        return { error: err.message || err };
+        return response;
     }
 };
 
-export const loginUser = async (userInfo) => {
+export const signupUserApi = async (userInfo) => {
     try {
-        const { data } = await client.post("/user/login", userInfo);
-        return data;
+        const res = await client.post("/user/signup", userInfo);
+        return res;
     } catch (err) {
         const { response } = err;
-        if (response?.data) return response.data;
-        return { error: err.message || err };
+        return response;
     }
 };
 
-export const updateUserDetails = async (token, userDetails) => {
+export const getIsAuthApi = async (token) => {
     try {
-        const { data } = await client.patch(
-            "/user/update-user-details",
-            userDetails,
-            {
-                headers: {
-                    Authorization: "Bearer" + " " + token,
-                    accept: "application/json",
-                },
-            }
-        );
-        return data;
-    } catch (err) {
-        const { response } = err;
-        if (response?.data) return response.data;
-        return { error: err.message || err };
-    }
-};
-
-export const getIsAuth = async (token) => {
-    try {
-        const { data } = await client.get("/user/is-auth", {
+        const res = await client.get("/user/is-auth", {
             headers: {
-                Authorization: "Bearer" + " " + token,
+                Authorization: `Bearer ${token}`,
                 accept: "application/json",
             },
         });
-        return data;
+        return res;
     } catch (error) {
         const { response } = error;
-        if (response?.data) return response.data;
-
-        return { error: error.message || error };
+        return response;
     }
 };
 
-export const getProfilePicture = async (token) => {
+export const getProfilePictureApi = async (userId) => {
     try {
-        const res = await client.get("/user/get-profile-picture", {
+        const res = await client.get(`/user/get-profile-picture/${userId}`, {
             headers: {
-                Authorization: "Bearer" + " " + token,
                 accept: "application/json",
             },
             responseType: "blob",
@@ -74,38 +49,108 @@ export const getProfilePicture = async (token) => {
     }
 };
 
-export const removeProfilePicture = async (token) => {
+export const getProfileDetailsApi = async (userId) => {
     try {
-        const { data } = await client.delete("/user/delete-profile-picture", {
-            headers: {
-                Authorization: "Bearer" + " " + token,
-                accept: "application/json",
-            },
-        });
-        return data;
-    } catch (err) {
-        const { response } = err;
-        if (response?.data) return response.data;
-        return { error: err.message || err };
+        const res = await client.get(`/user/get-profile-details/${userId}`);
+        return res;
+    } catch (error) {
+        const { response } = error;
+        return response;
     }
 };
 
-export const uploadProfilePicture = async (token, formData) => {
+export const removeProfilePictureApi = async (token) => {
     try {
-        const { data } = await client.post(
+        const res = await client.delete("/user/delete-profile-picture", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                accept: "application/json",
+            },
+        });
+        return res;
+    } catch (err) {
+        const { response } = err;
+        return response;
+    }
+};
+
+export const uploadProfilePictureApi = async (token, formData) => {
+    try {
+        const res = await client.post(
             "/user/upload-profile-picture",
             formData,
             {
                 headers: {
-                    Authorization: "Bearer" + " " + token,
+                    Authorization: `Bearer ${token}`,
                     accept: "application/json",
                 },
             }
         );
-        return data;
+        return res;
     } catch (err) {
         const { response } = err;
-        if (response?.data) return response.data;
-        return { error: err.message || err };
+        return response;
+    }
+};
+
+export const updateUserDetailsApi = async (token, userDetails) => {
+    try {
+        const res = await client.patch(
+            "/user/update-user-details",
+            userDetails,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    accept: "application/json",
+                },
+            }
+        );
+        return res;
+    } catch (err) {
+        const { response } = err;
+        return response;
+    }
+};
+
+export const changePasswordApi = async (token, oldPassword, newPassword) => {
+    try {
+        const res = await client.patch(
+            "/user/change-password",
+            { oldPassword, newPassword },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    accept: "application/json",
+                },
+            }
+        );
+        return res;
+    } catch (err) {
+        const { response } = err;
+        return response;
+    }
+};
+
+export const searchUserApi = async (searchKey, page, limit) => {
+    try {
+        const res = await client.get(
+            `/user/search-user/${searchKey}?page=${page}&limit=${limit}`
+        );
+        return res;
+    } catch (err) {
+        const { response } = err;
+        return response;
+    }
+};
+
+export const getIdThroughUsernameApi = async (username) => {
+    try {
+        const res = await client.get(
+            `/user/get-id-through-username/${username}`
+        );
+        return res;
+    } catch (err) {
+        const { response } = err;
+        return response;
     }
 };

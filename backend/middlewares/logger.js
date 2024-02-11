@@ -1,5 +1,7 @@
 const fs = require("fs");
 const path = require("path");
+const colors = require("colors");
+const { consoleLogBlue } = require("../utils/colorLogging");
 
 exports.logRequest = (req, res, next) => {
     const timestamp = new Date().toLocaleString();
@@ -8,7 +10,7 @@ exports.logRequest = (req, res, next) => {
 
     const logMsg = `REQUEST | ${timestamp} | ${req.method} | ${req.originalUrl}`;
 
-    console.log(logMsg);
+    consoleLogBlue(logMsg);
 
     fs.appendFile(filePath, logMsg + "\n", (err) => {
         if (err) {

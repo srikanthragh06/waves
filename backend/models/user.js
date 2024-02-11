@@ -1,69 +1,94 @@
-const mongoose = require("mongoose");
+const { DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
+const { sequelize } = require("../db/sequelize");
+const Sequelize = require("sequelize");
 
-// required: username, password,email
-// unique: username,email
-const userSchema = mongoose.Schema(
+const User = sequelize.define(
+    "User",
     {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true,
+        },
         username: {
-            type: String,
-            trim: true,
-            required: true,
+            type: DataTypes.STRING,
+            allowNull: false,
             unique: true,
-            minlength: 4,
-            maxlength: 32,
+            validate: {
+                len: [4, 32],
+            },
         },
         email: {
-            type: String,
-            trim: true,
+            type: DataTypes.STRING,
+            allowNull: false,
             unique: true,
-            required: false,
         },
         password: {
-            type: String,
-            required: true,
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         gender: {
-            type: String,
-            enum: ["Male", "Female", "Others"],
-            required: true,
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isIn: [["Male", "Female", "Others"]],
+            },
         },
         dateOfBirth: {
-            type: Date,
-            required: true,
+            type: DataTypes.DATE,
+            allowNull: false,
         },
         bio: {
-            type: String,
-            required: false,
-            maxlength: 200,
-        },
-        hasProfilePicture: {
-            type: Boolean,
-            default: false,
-            required: true,
+            type: DataTypes.TEXT,
+            validate: {
+                len: [0, 500],
+            },
         },
         profilePictureFileType: {
-            type: String,
-            required: false,
+            type: DataTypes.STRING,
+        },
+        followers: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            allowNull: false,
+            validate: {
+                min: 0,
+            },
+        },
+        following: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            allowNull: false,
+            validate: {
+                min: 0,
+            },
+        },
+        posts: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            allowNull: false,
+            validate: {
+                min: 0,
+            },
         },
     },
     {
         timestamps: true,
+        hooks: {
+            beforeSave: async (user) => {
+                if (user.changed("password")) {
+                    const hashedPassword = await bcrypt.hash(user.password, 10);
+                    user.password = hashedPassword;
+                }
+            },
+        },
     }
 );
 
-userSchema.pre("save", async function (next) {
-    if (this.isModified("password")) {
-        const hashedPassword = await bcrypt.hash(this.password, 10);
-        this.password = hashedPassword;
-    }
-    next();
-});
-
-userSchema.methods.comparePassword = async function (password) {
+User.prototype.comparePassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 };
-
-const User = mongoose.model("User", userSchema);
 
 module.exports = User;
