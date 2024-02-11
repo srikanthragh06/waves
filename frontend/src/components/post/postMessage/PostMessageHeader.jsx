@@ -11,7 +11,7 @@ export default function PostMessageHeader({
     isUserMsg,
     message,
 }) {
-    const { deleteMessage } = useContext(ChatContext);
+    const { deleteMessage, setReplyingMessageState } = useContext(ChatContext);
 
     return (
         <div
@@ -38,7 +38,12 @@ export default function PostMessageHeader({
                 </p>
                 <div className="flex flex-col">
                     <div className="flex sm:space-x-8 space-x-4 text-lg sm:text-xl w-full ">
-                        <BsReply className="cursor-pointer " />
+                        <BsReply
+                            className="cursor-pointer "
+                            onClick={() =>
+                                setReplyingMessageState({ ...message })
+                            }
+                        />
                         {isUserMsg && (
                             <RiDeleteBin2Line
                                 className="cursor-pointer "
