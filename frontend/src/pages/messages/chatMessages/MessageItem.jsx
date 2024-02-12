@@ -11,8 +11,6 @@ export default function MessageItem({ message }) {
 
     const isUserMsg = userDetailsState.id === message.senderId;
 
-    console.log(message.replyMessage);
-
     return (
         <div className="text-white border- flex items-center">
             {message.postId ? (

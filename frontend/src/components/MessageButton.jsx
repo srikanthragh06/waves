@@ -12,8 +12,8 @@ export default function MessageButton({ profileId }) {
     const { userDetailsState } = useContext(AuthContext);
 
     const {
-        setIsChattingState,
-        setCurrentConversationState,
+        changeIsChatting,
+        changeCurrentConversation,
         setCurrentConversationProfilePicState,
         setMessagesState,
     } = useContext(ChatContext);
@@ -23,8 +23,7 @@ export default function MessageButton({ profileId }) {
 
         const token = getAuthToken();
         var res = await createConversationApi(token, profileId);
-        console.log(res);
-        setCurrentConversationState(res.data.conversation);
+        changeCurrentConversation(res.data.conversation);
 
         if (!res.data.error) {
             const receiverId =
@@ -50,7 +49,7 @@ export default function MessageButton({ profileId }) {
             }
 
             setMessagesState([]);
-            setIsChattingState(true);
+            changeIsChatting(true);
             navigate("/messages");
         }
     };
