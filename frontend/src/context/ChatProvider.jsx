@@ -146,7 +146,7 @@ export default function ChatProvider({ children }) {
 
     useEffect(() => {
         if (userDetailsState.id) {
-            socket.current = io("ws://localhost:5001");
+            socket.current = io(process.env.REACT_APP_SOCKET_ORIGIN);
             socket.current.on("getMessage", handleGetMessage);
         }
 

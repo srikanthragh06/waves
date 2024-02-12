@@ -42,6 +42,7 @@ export default function SignInForm() {
         } else {
             setSignInErrorState("");
             const { data } = res;
+            console.log(res);
             setUserDetailsState({
                 id: data.user.id,
                 username: data.user.username,
