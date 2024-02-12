@@ -13,6 +13,12 @@ Waves is a social media web app developed using the PERN (PostgreSQL, Express, R
 -   **Real-Time Messaging with Media Sharing**: Utilize Socket.IO for instant messaging and share text, posts, images, and videos seamlessly.
 -   **Infinite Scroll**: Enjoy uninterrupted browsing with infinite scroll and pagination across posts, comments, and messages.
 
+
+## Demo Video
+
+https://youtu.be/4Qa2QcWJpD4
+
+
 ## Installation
 
 To install and run Waves on your local machine, follow these steps:
