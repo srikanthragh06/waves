@@ -59,7 +59,7 @@ export default function AddPost() {
 
         const token = getAuthToken();
         const res = await createPostApi(token, formData);
-        if (res.data.error) {
+        if (!res || res.data.error) {
             return setFormStatusState({
                 isPending: false,
                 error: "Could not upload post",

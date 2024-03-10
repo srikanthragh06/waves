@@ -93,3 +93,9 @@ export const formatTimestamp = (timestamp) => {
     const formattedDate = new Date(timestamp).toLocaleString();
     return formattedDate;
 };
+
+export const isEmail = (usermail) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(usermail)) return true;
+    else return false;
+};

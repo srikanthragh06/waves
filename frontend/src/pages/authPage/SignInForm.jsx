@@ -5,16 +5,11 @@ import PurpleButton from "../../components/PurpleButton";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { setAuthToken } from "../../utils/token";
+import { isEmail } from "../../utils/utils";
 
 export default function SignInForm() {
     const navigate = useNavigate();
     const { setUserDetailsState, setIsLoggedInState } = useContext(AuthContext);
-
-    const isEmail = (usermail) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailRegex.test(usermail)) return true;
-        else return false;
-    };
 
     const handleFormSubmit = async (e) => {
         setSignInPendingState(true);
@@ -35,14 +30,17 @@ export default function SignInForm() {
                 },
             });
         }
-        if (res?.data.error || !res) {
+        if (!res) {
+            setSignInErrorState("Network Error");
+            setUserDetailsState({});
+            setIsLoggedInState(false);
+        } else if (res?.data.error) {
             setSignInErrorState(res?.data?.error);
             setUserDetailsState({});
             setIsLoggedInState(false);
         } else {
             setSignInErrorState("");
             const { data } = res;
-            console.log(res);
             setUserDetailsState({
                 id: data.user.id,
                 username: data.user.username,

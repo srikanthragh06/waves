@@ -68,7 +68,7 @@ export default function ProfilePictureEdit() {
         const token = getAuthToken();
         const res = await uploadProfilePictureApi(token, formData);
 
-        if (res.data.error) {
+        if (!res || res.data.error) {
             return setProfilePicUpdateStatusState({
                 isPending: false,
                 error: "Could not update profile picture",
@@ -90,7 +90,7 @@ export default function ProfilePictureEdit() {
 
         const token = getAuthToken();
         const res = await removeProfilePictureApi(token);
-        if (res.data.error) {
+        if (!res || res.data.error) {
             return setProfilePicUpdateStatusState({
                 isPending: false,
                 error: "Failed to remove profile picture",

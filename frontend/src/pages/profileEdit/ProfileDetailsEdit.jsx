@@ -50,7 +50,9 @@ export default function ProfileDetailsEdit() {
         };
         const token = getAuthToken();
         const res = await updateUserDetailsApi(token, userDetails);
-
+        if (!res) {
+            setUpdateStatusState({ isPending: false, error: "Network error" });
+        }
         if (res.data.error) {
             setUpdateStatusState({ isPending: false, error: res.data.error });
         } else {

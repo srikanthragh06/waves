@@ -31,6 +31,13 @@ export default function ProfilePasswordEdit() {
             newPasswordInputState
         );
 
+        if (!res) {
+            setUpdateStatusState({
+                isPending: false,
+                error: "Network Error",
+                info: "",
+            });
+        }
         if (res.data.error) {
             setUpdateStatusState({
                 isPending: false,

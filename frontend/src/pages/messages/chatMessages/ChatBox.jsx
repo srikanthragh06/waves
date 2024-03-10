@@ -12,13 +12,7 @@ export default function ChatBox() {
     if (!isChattingState || !currentConversationState?.id) return null;
 
     return (
-        <MainPage
-        // style={
-        //     !isChattingState || !currentConversationsState
-        //         ? { display: "none" }
-        //         : {}
-        // }
-        >
+        <MainPage>
             <ChatHeader />
             <ChatMessages />
             <ChatInput />

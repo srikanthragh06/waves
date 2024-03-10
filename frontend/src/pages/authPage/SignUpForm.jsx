@@ -38,7 +38,12 @@ export default function SignUpForm() {
             password: passwordInputState,
         };
         const res = await signupUserApi({ user: signUpDetails });
-        if (res?.data.error || !res) {
+
+        if (!res) {
+            setSignUpErrorState("Network Error");
+            setUserDetailsState({});
+            setIsLoggedInState(false);
+        } else if (res?.data.error) {
             setSignUpErrorState(res?.data.error);
             setUserDetailsState({});
             setIsLoggedInState(false);
