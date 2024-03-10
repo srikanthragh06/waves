@@ -1,6 +1,6 @@
 # Waves
 
-Waves is a social media web app developed using the PERN (PostgreSQL, Express, React, Node.js) stack and socket.io. It provides users with a platform to connect, share updates, and interact with others in a social networking environment.
+Waves, a social media Web App developed using the PERN stack and socket.io, facilitates user connections, post sharing, and engagement via likes, comments, and messaging. Additionally, it offers profile management, content editing, and incorporates pagination and infinite scrolling for seamless content navigation, enhancing user experience and interaction.
 
 ## Features
 
