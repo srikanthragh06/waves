@@ -17,7 +17,7 @@ export default function ProfileDetailsRight() {
 
     const setProfileDetails = async (profileId) => {
         const res = await getProfileDetailsApi(profileId);
-        if (!res.data.error) {
+        if (!res?.data?.error) {
             setProfileDetailsState((prev) => {
                 return { ...prev, ...res?.data?.user };
             });
