@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import AuthPage from "./pages/authPage/AuthPage";
-import NotFound from "./pages/NotFound/NotFound";
 import GeneralMessageBox from "./components/GeneralMessageBox";
 import Home from "./pages/home/Home";
 import MainNavbar from "./navbar/MainNavbar";
@@ -13,6 +12,7 @@ import Search from "./pages/search/Search";
 import AddPost from "./pages/addPost/AddPost";
 import Messages from "./pages/messages/Messages";
 import SharePost from "./pages/sharePost/SharePost";
+import NotFound from "./pages/notFound/NotFound";
 
 export default function App() {
     const location = useLocation();
