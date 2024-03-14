@@ -39,12 +39,12 @@ app.use(IncorrectJSONFormatHandler);
 app.use(logRequest);
 
 // Main routes
-app.use("/user", userRouter);
-app.use("/following", followingRouter);
-app.use("/conversation", conversationRouter);
-app.use("/message", messageRouter);
-app.use("/post", postRouter);
-app.use("/comment", commentRouter);
+app.use("/api/user", userRouter);
+app.use("/api/following", followingRouter);
+app.use("/api/conversation", conversationRouter);
+app.use("/api/message", messageRouter);
+app.use("/api/post", postRouter);
+app.use("/api/comment", commentRouter);
 
 // handle 404 error requests
 app.use("/*", urlNotFoundHandler);
