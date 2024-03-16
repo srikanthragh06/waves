@@ -120,7 +120,7 @@ export default function SharePost() {
                         sm:max-w-[500px]
                         sm:py-2
                         flex flex-col items-center space-y-2 
-                        border-2"
+                        border-"
             >
                 <div className="sm:text-3xl text-xl py-2">Send Post to...</div>
 
