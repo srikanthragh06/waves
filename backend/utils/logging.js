@@ -15,7 +15,7 @@ exports.logResponse = (req, resMessage, statusCode = 200) => {
         consoleLogRed(logMsg);
     }
 
-    const responsesFolderPath = path.join("logs", "responses");
+    const responsesFolderPath = path.join(__dirname, "..", "logs", "responses");
     if (!fs.existsSync(responsesFolderPath))
         fs.mkdirSync(responsesFolderPath, { recursive: true });
 
