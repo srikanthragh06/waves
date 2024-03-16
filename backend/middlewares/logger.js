@@ -8,8 +8,9 @@ exports.logRequest = (req, res, next) => {
     const fileName = `${timestamp.split(",")[0].replaceAll("/", "-")}.log`;
     const filePath = path.join("logs", "requests", fileName);
 
-    const logsFolderPath = path.join("logs");
-    fs.mkdirSync(logsFolderPath, { recursive: true });
+    const requestsFolderPath = path.join("logs", "requests");
+    if (!fs.existsSync(requestsFolderPath))
+        fs.mkdirSync(requestsFolderPath, { recursive: true });
 
     const logMsg = `REQUEST | ${timestamp} | ${req.method} | ${req.originalUrl}`;
 

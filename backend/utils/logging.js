@@ -15,8 +15,9 @@ exports.logResponse = (req, resMessage, statusCode = 200) => {
         consoleLogRed(logMsg);
     }
 
-    const logsFolderPath = path.join("logs");
-    fs.mkdirSync(logsFolderPath, { recursive: true });
+    const responsesFolderPath = path.join("logs", "responses");
+    if (!fs.existsSync(responsesFolderPath))
+        fs.mkdirSync(responsesFolderPath, { recursive: true });
 
     fs.appendFile(filePath, logMsg + "\n", (err) => {
         if (err) {
