@@ -24,6 +24,7 @@ dist/
 
 # Ignore package-lock.json for npm
 package-lock.json
+pnpm-lock.yaml
 
 # Ignore compiled Java bytecode
 *.class
