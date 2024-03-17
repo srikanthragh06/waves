@@ -8,7 +8,7 @@ export default function AuthWelcomeImage() {
         >
             <img
                 className="w-full h-full object-cover opacity-60"
-                src="/images/welcome.jpg"
+                src="/welcome.jpg"
                 alt=""
             />
             <p

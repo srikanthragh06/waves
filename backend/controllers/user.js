@@ -252,7 +252,6 @@ exports.uploadProfilePicture = async (req, res, next) => {
                 user.profilePictureFileType &&
                 oldImageFileType !== newImageFileType
             ) {
-                console.log("check");
                 const oldImagePath = path.join(
                     __dirname,
                     "..",

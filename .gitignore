@@ -42,13 +42,4 @@ __pycache__/
 # Ignore environment-specific files
 .env
 
-# Ignore video files
-*.mp4
-*.avi
-*.mkv
-
-# Ignore image files
-*.jpg
-*.jpeg
-*.png
-*.gif
+media/
