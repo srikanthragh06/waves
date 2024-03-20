@@ -19,25 +19,28 @@ export default function AuthProvider({ children }) {
         }
 
         const res = await getIsAuthApi(token);
-        if (res?.data.error) {
+        if (res?.data?.error) {
             setIsLoggedInState(false);
             setUserDetailsState({});
             return false;
-        } else if (!res?.data.error) {
+        } else if (!res?.data?.error) {
             setIsLoggedInState(true);
             const data = res?.data;
-            if (!data) return;
-            setUserDetailsState({
-                id: data.user.id,
-                username: data.user.username,
-                bio: data.user.bio,
-                gender: data.user.gender,
-                dateOfBirth: data.user.dateOfBirth,
-                followers: data.user.followers,
-                following: data.user.following,
-                posts: data.user.posts,
-            });
-            return true;
+            if (!data) return false;
+            if (data.user) {
+                setUserDetailsState({
+                    id: data.user.id,
+                    username: data.user.username,
+                    bio: data.user.bio,
+                    gender: data.user.gender,
+                    dateOfBirth: data.user.dateOfBirth,
+                    followers: data.user.followers,
+                    following: data.user.following,
+                    posts: data.user.posts,
+                });
+                return true;
+            }
+            return false;
         }
     };
 
