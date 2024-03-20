@@ -38,9 +38,8 @@ export default function AuthProvider({ children }) {
                     following: data.user.following,
                     posts: data.user.posts,
                 });
-                return true;
             }
-            return false;
+            return true;
         }
     };
 
