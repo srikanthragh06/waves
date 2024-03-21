@@ -8,13 +8,14 @@ import React, {
 import { AuthContext } from "./AuthProvider";
 import { getAuthToken } from "../utils/token";
 import { addMessageApi, deleteMessageApi, setIsReadApi } from "../api/messages";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
+import useWebSocket from "../hooks/useWebSocket";
+import useAddUserEffect from "../hooks/useAddUserEffect";
+import useGetMessageSocket from "../hooks/useGetMessageSocket";
 
 export const ChatContext = createContext();
 
 export default function ChatProvider({ children }) {
-    const socket = useRef(null);
-
     const { userDetailsState } = useContext(AuthContext);
 
     const [replyingMessageState, setReplyingMessageState] = useState({});
@@ -144,26 +145,11 @@ export default function ChatProvider({ children }) {
         setIsChattingState(false);
     }, [userDetailsState.id]);
 
-    useEffect(() => {
-        if (userDetailsState.id) {
-            const socketOrigin = "ws://localhost:5001";
-            socket.current = io(socketOrigin);
-            socket.current.on("getMessage", handleGetMessage);
-        }
+    const socket = useWebSocket(userDetailsState, handleGetMessage);
 
-        return () => {
-            if (socket.current) {
-                socket.current.disconnect();
-            }
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDetailsState.id]);
+    useGetMessageSocket(socket, userDetailsState, handleGetMessage);
 
-    useEffect(() => {
-        if (userDetailsState.id && socket.current) {
-            socket.current.emit("addUser", userDetailsState.id);
-        }
-    }, [userDetailsState.id, socket]);
+    useAddUserEffect(socket, userDetailsState);
 
     return (
         <ChatContext.Provider

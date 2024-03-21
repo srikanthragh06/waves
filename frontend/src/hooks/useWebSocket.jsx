@@ -1,0 +1,28 @@
+import { useEffect, useRef } from "react";
+import io from "socket.io-client";
+
+const useWebSocket = (userDetailsState, handleGetMessage) => {
+    const socket = useRef(null);
+
+    useEffect(() => {
+        if (userDetailsState.id) {
+            const socketOrigin =
+                process.env.NODE_ENV === "production"
+                    ? "/ws/"
+                    : "ws://localhost:5001";
+            socket.current = io(socketOrigin);
+            socket.current.on("getMessage", handleGetMessage);
+        }
+
+        return () => {
+            if (socket.current) {
+                socket.current.disconnect();
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userDetailsState.id]);
+
+    return socket;
+};
+
+export default useWebSocket;
