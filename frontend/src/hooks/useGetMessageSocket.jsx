@@ -5,6 +5,7 @@ const useGetMessageSocket = (socket, userDetailsState, handleGetMessage) => {
         if (socket.current && userDetailsState?.id) {
             socket.current.on("getMessage", handleGetMessage);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [socket, userDetailsState?.id]);
 };
 

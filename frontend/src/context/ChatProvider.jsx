@@ -8,7 +8,6 @@ import React, {
 import { AuthContext } from "./AuthProvider";
 import { getAuthToken } from "../utils/token";
 import { addMessageApi, deleteMessageApi, setIsReadApi } from "../api/messages";
-import io from "socket.io-client";
 import useWebSocket from "../hooks/useWebSocket";
 import useAddUserEffect from "../hooks/useAddUserEffect";
 import useGetMessageSocket from "../hooks/useGetMessageSocket";
