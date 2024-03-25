@@ -15,3 +15,7 @@ exports.consoleLogGreen = (msg) => {
 exports.consoleLogCyan = (msg) => {
     console.log(colors.cyan(msg));
 };
+
+exports.consoleLogYellow = (msg) => {
+    console.log(colors.yellow(msg));
+};

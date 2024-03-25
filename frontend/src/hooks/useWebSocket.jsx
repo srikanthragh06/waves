@@ -9,9 +9,8 @@ const useWebSocket = (userDetailsState, handleGetMessage) => {
             const socketOrigin =
                 process.env.NODE_ENV === "production"
                     ? "/ws/"
-                    : "ws://localhost:5001";
+                    : "ws://localhost:5000";
             socket.current = io(socketOrigin);
-            socket.current.on("getMessage", handleGetMessage);
         }
 
         return () => {

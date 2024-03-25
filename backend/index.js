@@ -1,5 +1,7 @@
 // external imports
 const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
 require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -19,9 +21,20 @@ const messageRouter = require("./routes/message");
 const postRouter = require("./routes/post");
 const commentRouter = require("./routes/comment");
 const { consoleLogCyan } = require("./utils/colorLogging");
+const { handleSocketConnection } = require("./controllers/socket");
 
 // express object created
 const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+    },
+});
+
+const users = new Map();
+io.on("connection", (socket) => handleSocketConnection(io, socket, users));
 
 // connection to DB
 connectPostGres();
@@ -54,6 +67,6 @@ app.use(globalErrorHandler);
 
 // listen on port
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     consoleLogCyan(`Server has started on PORT: ${PORT} :)`);
 });
