@@ -8,7 +8,7 @@ const useWebSocket = (userDetailsState, handleGetMessage) => {
         if (userDetailsState.id) {
             const socketOrigin =
                 process.env.NODE_ENV === "production"
-                    ? "/ws/"
+                    ? "/api/"
                     : "ws://localhost:5000";
             socket.current = io(socketOrigin);
         }
