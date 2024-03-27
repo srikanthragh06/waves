@@ -144,7 +144,7 @@ export default function ChatProvider({ children }) {
         setIsChattingState(false);
     }, [userDetailsState.id]);
 
-    const socket = useWebSocket(userDetailsState, handleGetMessage);
+    const socket = useWebSocket(userDetailsState);
 
     useGetMessageSocket(socket, userDetailsState, handleGetMessage);
 

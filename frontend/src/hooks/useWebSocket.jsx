@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import io from "socket.io-client";
 
-const useWebSocket = (userDetailsState, handleGetMessage) => {
+const useWebSocket = (userDetailsState) => {
     const socket = useRef(null);
 
     useEffect(() => {
