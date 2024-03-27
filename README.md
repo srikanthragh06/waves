@@ -1,6 +1,6 @@
 # Waves
 
-Waves, a social media Web App developed using the PERN stack and socket.io, facilitates user connections, post sharing, and engagement via likes, comments, and messaging. Additionally, it offers profile management, content editing, and incorporates pagination and infinite scrolling for seamless content navigation, enhancing user experience and interaction.
+Waves, a social media Web App developed using the PERN stack and socket.io, facilitates user connections, post sharing, and engagement via likes, comments, and messaging. Additionally, it offers profile management, content editing, and incorporates pagination and infinite scrolling for seamless content navigation, enhancing user experience and interaction. Waves is deployed on a Digital Ocean droplet running Ubuntu, leveraging Nginx as a reverse proxy server.
 
 ## Features
 
