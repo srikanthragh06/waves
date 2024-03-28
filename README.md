@@ -34,7 +34,7 @@ To install and run Waves on your local machine, follow these steps:
   cd waves
 ```
 
-3. Install dependencies for the frontend, backend, and socket directories:
+3. Install dependencies for the frontend and backend directories:
 
     ```bash
     # Frontend
@@ -44,15 +44,11 @@ To install and run Waves on your local machine, follow these steps:
     # Backend
     cd ../backend
     npm install
-
-    # Socket
-    cd ../socket
-    npm install
     ```
 
 You will have to create the neccesary env file in the backend folder
 
-4. Once the dependencies are installed, you can start the development servers for the frontend, backend, and socket:
+4. Once the dependencies are installed, you can start the development servers for the frontend and backend:
 
     ```bash
     # Frontend
@@ -61,11 +57,6 @@ You will have to create the neccesary env file in the backend folder
 
     # Backend
     cd ../backend
-    npm start
-
-
-    # Socket
-    cd ../socket
     npm start
     ```
 
