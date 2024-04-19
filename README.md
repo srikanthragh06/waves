@@ -18,6 +18,13 @@ Waves, a social media Web App developed using the PERN stack and socket.io, faci
 -   Live Link : [http://143.244.137.30/](http://143.244.137.30/)
 -   Demo Video : https://youtu.be/4Qa2QcWJpD4
 
+###### Test Credentials for Sign in
+
+```
+username: lanaya
+password: qwerqwer
+```
+
 ## Installation
 
 To install and run Waves on your local machine, follow these steps:
