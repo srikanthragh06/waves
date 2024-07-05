@@ -15,7 +15,7 @@ Waves, a social media Web App developed using the PERN stack and socket.io, faci
 
 ## Demo
 
--   Live Link : [http://143.244.137.30/](http://143.244.137.30/)
+-   Live Link : [https://wavesapp.online/](https://wavesapp.online/)
 -   Demo Video : https://youtu.be/4Qa2QcWJpD4
 
 ###### Test Credentials for Sign in
