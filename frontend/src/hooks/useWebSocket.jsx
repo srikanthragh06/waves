@@ -6,10 +6,7 @@ const useWebSocket = (userDetailsState) => {
 
     useEffect(() => {
         if (userDetailsState.id) {
-            const socketOrigin =
-                process.env.NODE_ENV === "production"
-                    ? "/"
-                    : "ws://localhost:5000";
+            const socketOrigin = process.env.REACT_APP_SOCKET_PATH;
             socket.current = io(socketOrigin);
         }
 
