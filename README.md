@@ -15,61 +15,7 @@ Waves, a social media Web App developed using the PERN stack and socket.io, faci
 
 ## Demo
 
--   Live Link : [https://wavesapp.online/](https://wavesapp.online/)
 -   Demo Video : https://youtu.be/4Qa2QcWJpD4
-
-###### Test Credentials for Sign in
-
-```
-username: lanaya
-password: qwerqwer
-```
-
-## Installation
-
-To install and run Waves on your local machine, follow these steps:
-
-1. Clone this repository to your local machine:
-
-```bash
-  git clone https://github.com/srikanthragh06/waves.git
-```
-
-2. Navigate to the `waves` directory:
-
-```bash
-  cd waves
-```
-
-3. Install dependencies for the frontend and backend directories:
-
-    ```bash
-    # Frontend
-    cd frontend
-    npm install
-
-    # Backend
-    cd ../backend
-    npm install
-    ```
-
-You will have to create the neccesary env file in the backend folder
-
-4. Once the dependencies are installed, you can start the development servers for the frontend and backend:
-
-    ```bash
-    # Frontend
-    cd ../frontend
-    npm start
-
-    # Backend
-    cd ../backend
-    npm start
-    ```
-
-5. Access Waves in your web browser at `http://localhost:3000`.
-
-That's it! You now have Waves up and running on your local machine.
 
 ## Screenshots
 
